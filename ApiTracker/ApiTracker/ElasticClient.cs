@@ -27,7 +27,7 @@ namespace ApiTracker
 
             client = new ElasticLowLevelClient(config);
 
-            IndexName = Assembly.GetExecutingAssembly().GetName().Name.ToLower();
+            IndexName = "apitracker-" + DateTime.UtcNow.ToString("yyyyMMdd");
         }
 
         /// <summary>
