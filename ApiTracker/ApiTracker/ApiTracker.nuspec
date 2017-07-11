@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata minClientVersion="$version$">
+        <id>$id$</id>
+        <version>$version$</version>
+        <title>ApiTracker</title>
+        <authors>jxsh08</authors>
+        <licenseUrl>https://github.com/seven1986/ApiTracker/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/seven1986/ApiTracker</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>$description$</description>
+        <language>zh-CN</language>
+        <tags>apiTracker elasticsearch log</tags>
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="10.0.3" />
+            <dependency id="Elasticsearch.Net" version="5.4.0" />
+            <dependency id="Microsoft.AspNet.WebApi" version="5.2.3" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\ApiTracker.dll" target="lib\ApiTracker.dll" />
+    </files>
+</package>
