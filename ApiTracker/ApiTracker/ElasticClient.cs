@@ -1,6 +1,7 @@
 ﻿using Elasticsearch.Net;
 using System;
 using System.Configuration;
+using System.Reflection;
 
 namespace ApiTracker
 {
@@ -26,7 +27,7 @@ namespace ApiTracker
 
             client = new ElasticLowLevelClient(config);
 
-            IndexName = GetType().Assembly.GetName().Name.ToLower();
+            IndexName = Assembly.GetExecutingAssembly().GetName().Name.ToLower();
         }
 
         /// <summary>

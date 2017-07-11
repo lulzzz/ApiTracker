@@ -10,7 +10,7 @@ using System.Web.Http.Filters;
 
 namespace ApiTracker
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ApiTrackerAttribute : ActionFilterAttribute
     {
         private readonly static ElasticClient elastic = new ElasticClient();
