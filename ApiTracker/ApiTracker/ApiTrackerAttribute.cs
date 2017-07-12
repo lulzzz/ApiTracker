@@ -19,7 +19,7 @@ namespace ApiTracker
 
         public ApiTrackerAttribute(string IndexName = "apitracker")
         {
-            elastic = new ElasticClient(IndexName);
+            elastic = new ElasticClient(IndexName.Trim().ToLower());
         }
 
         #region Action执行前
