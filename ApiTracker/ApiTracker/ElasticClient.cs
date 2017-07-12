@@ -17,17 +17,18 @@ namespace ApiTracker
         /// <summary>
         /// 默认读取webconfig.AppSettings.ElasticConnection
         /// </summary>
-        public ElasticClient() : this(ConfigurationManager.AppSettings["ElasticConnection"])
+        public ElasticClient(string indexName = "apitracker") : this(indexName, ConfigurationManager.AppSettings["ElasticConnection"])
         {
+
         }
 
-        public ElasticClient(string url)
+        public ElasticClient(string indexName,string url)
         {
             var config = new ConnectionConfiguration(new Uri(url));
 
             client = new ElasticLowLevelClient(config);
 
-            IndexName = "apitracker-" + DateTime.UtcNow.ToString("yyyyMMdd");
+            IndexName += "-" + DateTime.UtcNow.ToString("yyyyMMdd");
         }
 
         /// <summary>
