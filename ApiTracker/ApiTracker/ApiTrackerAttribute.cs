@@ -17,9 +17,15 @@ namespace ApiTracker
 
         private readonly string Key = "_ApiTracker_";
 
-        public ApiTrackerAttribute(string IndexName = "apitracker")
+        /// <summary>
+        /// ApiTracker
+        /// 写入使用异步Task，无论成功失败，1秒后自动取消操作
+        /// </summary>
+        /// <param name="IndexName">索引名称，默认为apitracker</param>
+        /// <param name="timeout">写入动作超时阈值，单位为毫秒</param>
+        public ApiTrackerAttribute(string IndexName = "apitracker",int timeout = 500)
         {
-            elastic = new ElasticClient(IndexName.Trim().ToLower());
+            elastic = new ElasticClient(IndexName.Trim().ToLower(), timeout);
         }
 
         #region Action执行前
