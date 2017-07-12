@@ -13,9 +13,14 @@ namespace ApiTracker
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class ApiTrackerAttribute : ActionFilterAttribute
     {
-        private readonly static ElasticClient elastic = new ElasticClient();
+        private ElasticClient elastic;
 
         private readonly string Key = "_ApiTracker_";
+
+        public ApiTrackerAttribute(string IndexName = "apitracker")
+        {
+            elastic = new ElasticClient(IndexName);
+        }
 
         #region Action执行前
         public override Task OnActionExecutingAsync(HttpActionContext actionContext, CancellationToken cancellationToken)
