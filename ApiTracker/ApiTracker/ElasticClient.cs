@@ -47,9 +47,11 @@ namespace ApiTracker
             var tokenSource = new CancellationTokenSource();
 
             Task.Run(new Action(() =>
-            { 
+            {
+                if (tokenSource.Token.IsCancellationRequested) { return; }
+
                 // 记录日志的超时时间
-                var timeout = new TimeSpan(DateTime.UtcNow.AddMilliseconds(Timeout).Ticks);
+                var timeout = new TimeSpan(500 * 10000);
 
                 var result = client.Index<object>(IndexName,
                     "apitracker",
