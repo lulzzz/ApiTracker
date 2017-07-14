@@ -1,9 +1,11 @@
-# ApiTracker
+# ApiTracker 
+
+[![Build status](https://ci.appveyor.com/api/projects/status/o72ved788wpbabvk?svg=true)](https://ci.appveyor.com/project/seven1986/apitracker)
 
 PM> Install-Package ApiTracker
 
 
-web.config 配置
+web.config 閰嶇疆
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
@@ -15,12 +17,12 @@ web.config 配置
 
 
 
-Web API Controller 配置
+Web API Controller 閰嶇疆
 
 ```csharp
 using ApiTracker;
 
-// ApiTracker的indexName如果不填，默认为：apitracker
+// ApiTracker鐨刬ndexName濡傛灉涓嶅～锛岄粯璁や负锛歛pitracker
 [ApiTracker("WebApplication")]
  public class ValuesController : ApiController
  {
