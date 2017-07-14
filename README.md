@@ -23,6 +23,7 @@ Web API Controller 配置
 using ApiTracker;
 
 // ApiTracker的indexName如果不填，默认为：apitracker
+// ApiTrackerOptions 属性可以定制Log的字段
 [ApiTracker("WebApplication")]
  public class ValuesController : ApiController
  {
@@ -33,3 +34,5 @@ using ApiTracker;
     }
 }
 ```
+
+
