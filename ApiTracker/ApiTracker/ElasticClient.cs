@@ -51,7 +51,7 @@ namespace ApiTracker
                 if (tokenSource.Token.IsCancellationRequested) { return; }
 
                 // 记录日志的超时时间
-                var timeout = new TimeSpan(500 * 10000);
+                var timeout = new TimeSpan(Timeout * 10000);
 
                 var result = client.Index<object>(IndexName,
                     "apitracker",
