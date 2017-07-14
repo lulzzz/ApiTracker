@@ -36,44 +36,68 @@ namespace ApiTracker
                 StartTime = DateTime.UtcNow,
                 Action = actionContext.ActionDescriptor.ActionName,
                 Controller = actionContext.ActionDescriptor.ControllerDescriptor.ControllerName,
-                Params = string.Empty,
-                Headers = actionContext.Request.Headers.ToString(),
                 Method = actionContext.Request.Method.Method,
-                ClientIp = ClientIP()
+                Params = string.Empty,
             };
 
-            #region Request Url Params 
-            if (actionContext.ActionArguments != null &&
-                actionContext.ActionArguments.Keys.Count > 0)
+            var options = new ApiTrackerOptions();
+
+            var OptionsFromController = actionContext.ActionDescriptor.ControllerDescriptor.GetCustomAttributes<ApiTrackerOptions>();
+
+            if (OptionsFromController != null && OptionsFromController.Count > 0)
             {
-                log.Params = JsonConvert.SerializeObject(actionContext.ActionArguments);
+                options = OptionsFromController[0];
             }
-            #endregion
 
-            #region Request Body Params 
-            var stream = actionContext.Request.Content.ReadAsStreamAsync().Result;
+            var OptionsFromAction = actionContext.ActionDescriptor.GetCustomAttributes<ApiTrackerOptions>();
 
-            if (stream.Length > 0 && stream.CanSeek)
+            if (OptionsFromAction != null && OptionsFromAction.Count > 0)
             {
-                var requestData = string.Empty;
-
-                using (var ms = new MemoryStream())
-                {
-                    stream.CopyTo(ms);
-
-                    requestData = Encoding.UTF8.GetString(ms.ToArray());
-                }
-
-                if (!string.IsNullOrEmpty(log.Params))
-                {
-                    log.Params += "&";
-                }
-
-                log.Params += "StreamEntity=" + requestData;
-
-                stream.Seek(0, SeekOrigin.Begin);
+                options = OptionsFromAction[0];
             }
-            #endregion
+
+            if (options.EnableHeaders) {
+                log.Headers = actionContext.Request.Headers.ToString();
+            }
+
+            if (options.EnableClientIp){
+                log.ClientIp = ClientIP();
+            }
+
+            if (options.EnableParams)
+            {
+                #region Request Url Params 
+                if (actionContext.ActionArguments != null &&
+                    actionContext.ActionArguments.Keys.Count > 0)
+                {
+                    log.Params = JsonConvert.SerializeObject(actionContext.ActionArguments);
+                }
+                #endregion
+                #region Request Body Params 
+                var stream = actionContext.Request.Content.ReadAsStreamAsync().Result;
+
+                if (stream.Length > 0 && stream.CanSeek)
+                {
+                    var requestData = string.Empty;
+
+                    using (var ms = new MemoryStream())
+                    {
+                        stream.CopyTo(ms);
+
+                        requestData = Encoding.UTF8.GetString(ms.ToArray());
+                    }
+
+                    if (!string.IsNullOrEmpty(log.Params))
+                    {
+                        log.Params += "&";
+                    }
+
+                    log.Params += "StreamEntity=" + requestData;
+
+                    stream.Seek(0, SeekOrigin.Begin);
+                }
+                #endregion
+            }
 
             //var api = actionContext.ControllerContext.Controller as BasicAPI;
 
@@ -134,5 +158,28 @@ namespace ApiTracker
             return result;
         }
         #endregion
+    }
+
+    /// <summary>
+    /// API日志记录配置项
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    public class ApiTrackerOptions : Attribute
+    {
+        public bool EnableHeaders { get; set; }
+
+        public bool EnableClientIp { get; set; }
+
+        public bool EnableParams { get; set; }
+
+        public ApiTrackerOptions():this(true,true,true) {
+
+        }
+
+        public ApiTrackerOptions(bool EnableHeaders, bool EnableClientIp, bool EnableParams) {
+            this.EnableHeaders = EnableHeaders;
+            this.EnableClientIp = EnableClientIp;
+            this.EnableParams = EnableParams;
+        }
     }
 }
