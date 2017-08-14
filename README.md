@@ -1,6 +1,16 @@
 # ApiTracker 
 
+---
+
+If you are looking for the ASP.NET version please head to [ApiTracker.AspNetCore](https://github.com/seven1986/ApiTracker.AspNetCore) project.
+
+---
+
 [![Build status](https://ci.appveyor.com/api/projects/status/o72ved788wpbabvk?svg=true)](https://ci.appveyor.com/project/seven1986/apitracker)
+
+NuGet downloads (ApiTracker) | NuGet downloads (ApiTracker.AspNetCore)
+--------------- | ---------------
+[![NuGet downloads ApiTracker](https://img.shields.io/nuget/dt/ApiTracker.svg)](https://www.nuget.org/packages/ApiTracker)|[![NuGet downloads ApiTracker.AspNetCore](https://img.shields.io/nuget/dt/ApiTracker.AspNetCore.svg)](https://www.nuget.org/packages/ApiTracker.AspNetCore)
 
 PM> Install-Package ApiTracker
 
