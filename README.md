@@ -1,4 +1,4 @@
-# ApiTracker [![Build status](https://ci.appveyor.com/api/projects/status/o72ved788wpbabvk?svg=true)](https://ci.appveyor.com/project/seven1986/apitracker)
+# ApiTracker [![Build status](https://ci.appveyor.com/api/projects/status/o72ved788wpbabvk?svg=true)](https://ci.appveyor.com/project/seven1986/apitracker) [![NuGet](https://img.shields.io/nuget/v/apitracker.svg)](https://www.nuget.org/packages/apitracker)  
 
 ---
 
