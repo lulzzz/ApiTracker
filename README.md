@@ -1,4 +1,4 @@
-# ApiTracker 
+# ApiTracker [![Build status](https://ci.appveyor.com/api/projects/status/o72ved788wpbabvk?svg=true)](https://ci.appveyor.com/project/seven1986/apitracker)
 
 ---
 
@@ -6,7 +6,7 @@ If you are looking for the ASP.NET version please head to [ApiTracker.AspNetCore
 
 ---
 
-[![Build status](https://ci.appveyor.com/api/projects/status/o72ved788wpbabvk?svg=true)](https://ci.appveyor.com/project/seven1986/apitracker)
+
 
 NuGet downloads (ApiTracker) | NuGet downloads (ApiTracker.AspNetCore)
 --------------- | ---------------
